@@ -1,0 +1,74 @@
+<div class="property-index-hero-unit">
+</div>
+<div class="container" id="filter-search">
+  <h2 id='filter-title'>Filter your search</h2>
+    <div class="row search-filter">
+      <div class="col-sm-8 col-sm-offset-4" id='filter-search-bar'>
+        <div id="price-slider">
+            Filter by price: <b>$ 100</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[<%= min_price(@properties) %> ,<%= max_price(@properties) %>]"/><b>$ 1000</b>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row search-bar">
+    <%= render partial: "shared/searchbar_properties" %>
+  </div>
+</div>
+</div> 
+<hr class="property-divider">
+<div class="container">
+  <div class="col-sm-8">
+    <div class="text-center" id="location">
+      <% @properties.each do |property| %>
+        <div class="col-sm-6 ok" data-price='<%= property.price %>'>
+          <h3 class="property-title"><%= truncate(property.title, length: 30) %></h3>
+          <%= link_to user_property_path(property.user.slug, property.id), class: "property-price-link" do %>
+            <div class="row property-price">
+                <span class="property-index-price">$<%= property.price %></span>
+            </div>
+              <%= image_tag(property.images.first.image.url(:index)) %>
+          <% end %>
+          <br><br>
+          <div class="row">
+            <div class="col-sm-3">
+              <span class="glyphicon glyphicon-home index-icon" aria-hidden="true"></span>
+            </div>
+            <div class="col-sm-3">
+              <span class="glyphicon glyphicon-bed index-icon" aria-hidden="true"></span>
+            </div>
+            <div class="col-sm-3">
+              <span class="glyphicon glyphicon-tint index-icon" aria-hidden="true"></span>
+            </div>
+            <div class="col-sm-3">
+              <span class="glyphicon glyphicon-user index-icon" aria-hidden="true"></span>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-sm-3">
+          <h5 class="property-type-description text-center"><%= property.property_type.name if property.property_type %></h5  >
+          </div>
+          <div class="col-sm-3">
+          <h5 class="property-stat-description text-center"><%= property.bedrooms %></h5 >
+          </div>
+          <div class="col-sm-3">
+          <h5 class="property-stat-description text-center"><%= property.bathrooms %></h5 >
+          </div>
+          <div class="col-sm-3">
+          <h5 class="property-stat-description text-center"><%= property.sleeps %></h5 >
+          </div>
+        </div>
+        <hr class="property-divider">
+      </div>
+      <% end %>
+</div>
+</div>
+<div class="col-sm-4">
+<br>
+  <div class="container map-container">
+    <div class="row map-container">
+      <%= render "shared/search_map" %>
+    </div>
+  </div>
+</div>
+</div>

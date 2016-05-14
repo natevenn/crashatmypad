@@ -1,0 +1,35 @@
+<h1 class="<%= reservation_status %> admin-reservations-index-header"><%= reservation_status %> reservations</h1><br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>reservation date</th>
+        <th>reservation id</th>
+        <th>property owner</th>
+        <th>customer name</th>
+        <th>total price</th>
+      </tr>
+    </thead>
+    <% @reservations.each do |reservation| %>
+      <tr id="<%= reservation.id %>-reservation">
+        <td class="text-nowrap">
+           <%= display_checkin_date(reservation) %>
+           <br>
+           <%= display_checkout_date(reservation) %>
+        </td>
+        <td>
+          <%= link_to reservation.id, admin_reservation_path(reservation.id) %>
+        </td>
+        <td class="text-nowrap">
+            <%= reservation.property.user.fullname %>
+        </td>
+        <td>
+          <%= reservation.fullname %>
+        </td>
+        <td>
+          <%= "$#{reservation.order_total}" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

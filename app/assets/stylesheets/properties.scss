@@ -1,0 +1,99 @@
+// Place all the styles related to the properties controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.property-show-hero-unit {
+    background-image:url('https://images.unsplash.com/photo-1457207714875-13ef75a801ca?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=692bb0161603c0bb499e361b0f4e0904');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height:150px;
+    margin-top: -5px;
+  }
+
+.property-index-hero-unit {
+    background-image:url('https://images.unsplash.com/photo-1446822593536-ba168d292b37?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6ea60ea61b89a713388e64d8485af6a0');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height:150px;
+    margin-top: -5px;
+  }
+
+span.index-icon {
+    font-size: 1.75em;
+    opacity: .7;
+}
+
+.no-date-price {
+  font-size: 3em;
+}
+
+span.mail-icon {
+    font-size: 2.75em;
+    opacity: .9;
+}
+span.show-icon {
+    font-size: 3.5em;
+    opacity: .7;
+}
+
+.property-stat-description {
+  font-weight: 300;
+  font-size: 1em;
+
+}
+
+.property-type-description {
+  font-weight: 300;
+  font-size: .75em;
+
+}
+
+#price-slider {
+  text-content: center;
+}
+
+.property-title {
+  margin-bottom: 0px;
+  margin-top: 3px;
+}
+.property-price {
+  font-weight: 200;
+  text-align: left;
+  font-size: 3em;
+  margin-left: 12%;
+  margin-bottom: -15%;
+  z-index: 1; position:relative;
+}
+
+.property-index-price {
+  color: white;
+}
+
+a.property-price-link {
+  color: white;
+  text-decoration: none;;;
+}
+
+a:hover.property-price-link {
+  color: white;
+  text-decoration: underline;
+}
+
+.property-divider {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ok {
+  background-color: white;
+  border-style: solid;
+  border-top: none;
+  border-bottom: none;
+  border-width: thin;
+  border-color: rgba(211, 211, 211, .5);
+
+}

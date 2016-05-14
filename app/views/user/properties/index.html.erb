@@ -1,0 +1,111 @@
+<%= render partial: "shared/user_dashboard_header" %>
+<% if current_user.properties.count >= 1 %>
+<div class="container">
+      <% @properties.each_with_index do |property, i| %>
+      <hr>
+      <div class="row">
+        <% property.images.each do |image| %>
+        <div class="col-sm-3">
+          <%= image_tag(image.image.url(:index)) %>
+        </div>
+        <% end %>
+      </div>
+      <div class="row" id="edit-property-<%= property.id %>">
+      <div class="form-group has success text-center form-div col-sm-6">
+        <%= form_for [:user, property], url: user_property_path(current_user.slug, property.id) do |f| %>
+        <h3>My Property's Information</h3>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <%= f.label :title, class:"sr-only"  %>
+            <%= f.text_field :title, placeholder: "property title", class:"form-control form-control-success", maxlength: 65, required: true%>
+          </div>
+          <div class="form-group">
+            <%= f.label :description, class:"sr-only"  %>
+            <%= f.text_area :description, placeholder: "property description", class:"form-control text-input", required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :price, class:"sr-only"  %>
+            <%= f.number_field :price, placeholder: "rental price per day", class:"form-control text-input", id: "#{property.id}-property-price", required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.collection_select(:property_type_id, PropertyType.all, :id, :name, {prompt:"property type"}, {id:"property-type", class:"form-control", required:true}) %>
+          </div>
+          <h3>My Property's Location</h3>
+          <div class="form-group">
+            <div class="col-sm-8" id="<%= property.id %>-property-street">
+              <%= f.label :street, class:"sr-only"  %>
+              <%= f.text_field :street, placeholder: "street", class:"form-control form-control-success", required: true %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label :unit, class:"sr-only"  %>
+              <%= f.text_field :unit, placeholder: "unit", class:"form-control form-control-success" %>
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="col-sm-6">
+                <%= f.label :city, class:"sr-only"  %>
+                <%= f.text_field :city, placeholder: "city", class:"form-control form-control-success", required: true %>
+              </div>
+              <div class="col-sm-3">
+                <%= f.select :state, options_for_select(us_states, property.state), {}, {class: "form-control", required: true } %>
+                <%= f.label :zip, class:"sr-only"  %>
+              </div>
+              <div class="col-sm-3">
+                <%= f.text_field :zip, placeholder: "zip", class:"form-control form-control-success", required: true %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="new-property" class="form-group has success text-center form-div col-sm-6">
+        <h3>My Property's Details</h3>
+        <div class="form-group">
+          <div class="col-sm-4">
+            <%= f.label :bedrooms %>
+            <%= f.select :bedrooms, options_for_select([*1..16], property.bedrooms), {}, {class: "form-control form-control", id: "bedroom-dropdown"} %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.label :bathrooms %>
+            <%= f.select "bathrooms", options_for_select([*1..10], property.bathrooms), {}, {class: "form-control form-control",  required: true} %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.label :sleeps %>
+            <%= f.select "sleeps", options_for_select([*1..25], property.sleeps), {}, {required: true, class: "form-control form-control"} %>
+          </div>
+        </div>
+        <br><br><br>
+
+        <h3>My Property's Amenities</h3>
+        <% Amenity.all.each do |amenity| %>
+          <%= check_box_tag "property[amenity_ids][]", amenity.id, property.amenities.include?(Amenity.find(amenity.id)) %>
+          <%= label_tag amenity.name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% end %>
+
+        <br><br>
+        <h5>Upload up to 4 images less than 2mb</h5>
+        <%= f.label :images, class:"sr-only"  %>
+        <%= f.file_field :images, {multiple: true, id:"file_input#{i}", class:"form-control text-input", style:"display:none", accept: 'image/png,image/gif,image/jpeg' } %>
+        <div class="form-inline">
+          <div class="form-group">
+            <label class="file">
+            <input id="imageFormCover<%= i %>" class="form-control" type="text" readonly>
+            <a class="btn btn-primary" onclick="$('input[id=file_input<%= i %>]').click();">change images</a>
+            </label>
+            <script type="text/javascript">
+              $('input[id=file_input]'+ i).change(function(i) {
+              $('#imageFormCover' + i).val($(this).val());
+              });
+            </script>
+          </div>
+        </div>
+        <br><br>
+        <div id="update-property">
+          <%= f.submit "Update my Pad!", class:"btn btn-checkout" %>
+        </div>
+      </div>
+    </div>
+      <% end %>
+    <% end %>
+</div>
+<% else %>
+<%= render partial: "shared/no_listings" %>
+<% end %>

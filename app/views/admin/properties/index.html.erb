@@ -1,0 +1,33 @@
+<h1 class="<%= property_status %> admin-property-index-header"><%= property_status %> properties</h1>
+<br>
+<br>
+<div class="table-responsive">
+  <table class="table table-hover table-condensed table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>date</th>
+        <th>property id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>description</th>
+        <th>status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @properties.each do |property| %>
+      <tr id="<%= property.id %>-property">
+        <td class="text-nowrap"><%= property.date %></td>
+        <td><%= link_to property.id, admin_property_path(property.id) %></td>
+        <td class="text-nowrap"><%= property.owner %></td>
+        <td><%= property.display_total %></td>
+        <td><%= truncate(property.description) %></td>
+
+        <%= form_for [:admin, property], url: admin_property_path(property.id) do |f| %>
+        <td><%= f.select(:status, options_for_select(%w(pending active inactive), property.status), {prompt: property.status }) %></td>
+          <td><%= f.submit "update property", class:"btn btn-checkout btn-s"%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
