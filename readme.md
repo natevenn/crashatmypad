@@ -2,6 +2,9 @@
 [![Stories in Ready](https://badge.waffle.io/adamhundley/the_pivot.svg?label=ready&title=Ready)](http://waffle.io/adamhundley/the_pivot)
 [![Code Climate](https://codeclimate.com/github/adamhundley/the_pivot/badges/gpa.svg)](https://codeclimate.com/github/adamhundley/the_pivot)
 
+<img width="1263" alt="search" src="https://cloud.githubusercontent.com/assets/8459012/15270515/ccce3a58-19df-11e6-897b-2a4f505c3c8d.png">
+<img width="1276" alt="c_a_m_p" src="https://cloud.githubusercontent.com/assets/8459012/15270516/cf2bab14-19df-11e6-9682-54b3bc942e0d.png">
+
 Crash At My Pad (CAMP) is an eCommerce Rails application that was built upon [Little Owl](https://github.com/weilandia/little_owl). The main goal for this project was to learn how to "pivot" an existing business model into something completely different to reflect an agile approach of a real world scenario.
 
 ### Learning Goals
